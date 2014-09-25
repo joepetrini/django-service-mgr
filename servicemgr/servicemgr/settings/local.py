@@ -18,3 +18,11 @@ DATABASES = {
 INSTALLED_APPS += (
     'debug_toolbar.apps.DebugToolbarConfig',
 )
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'joepetrini'
+EMAIL_HOST_PASSWORD = '3TheLimit'
+DEFAULT_FROM_EMAIL = 'joepetrini@gmail.com'
+#DEFAULT_TO_EMAIL = 'to email'
