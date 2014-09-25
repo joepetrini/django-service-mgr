@@ -4,7 +4,7 @@ from django.contrib.gis.db import models
 
 class Zipcode(models.Model):
     code = models.CharField(max_length=5)
-    poly = models.PolygonField()
+    poly = models.PolygonField(null=True, blank=True)
     objects = models.GeoManager()
 
     class Meta:
@@ -17,7 +17,7 @@ class City(models.Model):
     name = models.CharField(max_length=5)
     state = models.CharField(max_length=2, default="NJ")
     point = models.PointField()
-    poly = models.PolygonField()
+    poly = models.PolygonField(null=True, blank=True)
     objects = models.GeoManager()
 
     class Meta:
@@ -26,15 +26,17 @@ class City(models.Model):
         verbose_name_plural = _('Cities')
 
 
-
 class Address(models.Model):
+    name = models.CharField(max_length=200, verbose_name = _("Name"))
     line1 = models.CharField(max_length=200, verbose_name = _("Addressline 1"))
     line2 = models.CharField(max_length=200, verbose_name = _("Addressline 2"), blank=True, null=True)
     zipcode = models.ForeignKey(Zipcode)
     city = models.ForeignKey(City)
-    point = models.PointField()
+    point = models.PointField(null=True, blank=True)
+    objects = models.GeoManager()
+
 
     class Meta:
         db_table = 'address'
         verbose_name = _('Postal Address')
-        verbose_name_plural = _('Postal Address')
+        verbose_name_plural = _('Postal Addresses')
