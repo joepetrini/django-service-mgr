@@ -1,8 +1,8 @@
 import datetime
 from django.db import models
-from django.contrib.auth.models import User
 from model_utils.models import TimeStampedModel
 from model_utils import Choices
+from django.conf import settings
 from location.models import Address
 
 
@@ -30,6 +30,11 @@ class Customer(TimeStampedModel):
     phone2_name = models.CharField(max_length=100, null=True, blank=True, verbose_name = _("Phone 2 Name"))
     phone2_number = models.CharField(max_length=15, null=True, blank=True, verbose_name = _("Phone 2 Number"))
     phone2_mobile = models.BooleanField(default=False, verbose_name=_("Phone 2 Is Mobile"))
+    service_location = models.ForeignKey(Location)
+    billing_location = models.ForeignKey(Location, null=True, blank=True)
+    user1 = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+    user2 = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+
 
     class Meta:
         db_table = 'customer'

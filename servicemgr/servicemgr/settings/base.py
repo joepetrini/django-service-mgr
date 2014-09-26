@@ -25,6 +25,8 @@ SECRET_KEY = '=io(5i=xpmrdx=t%50xww9q4lb(d5qwv%(why&*!%iayl)t3z9'
 DEBUG = True
 TEMPLATE_DEBUG = True
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = []
 
 
@@ -40,10 +42,10 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'django.contrib.sites',
     'bootstrap3',
-    'allauth',
-    'allauth.account',
+    #'allauth',
+    #'allauth.account',
     'location',
-    'customer',
+    #'customer',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,8 +61,8 @@ MIDDLEWARE_CLASSES = (
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
     "django.core.context_processors.request",
     # allauth specific context processors
-    "allauth.account.context_processors.account",
-    "allauth.socialaccount.context_processors.socialaccount",
+    #"allauth.account.context_processors.account",
+    #"allauth.socialaccount.context_processors.socialaccount",
 )
 
 ROOT_URLCONF = 'servicemgr.urls'
@@ -73,8 +75,12 @@ WSGI_APPLICATION = 'servicemgr.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
